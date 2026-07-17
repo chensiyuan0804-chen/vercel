@@ -22,19 +22,22 @@ async function render(pathname = "/") {
   );
 }
 
-test("server-renders the finished portfolio homepage", async () => {
+test("server-renders the reviewed portfolio homepage", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<html lang="zh-CN"/i);
-  assert.match(html, /让产品被看见/);
-  assert.match(html, /两步路用户体验升级/);
-  assert.match(html, /轮本咖啡小程序/);
-  assert.match(html, /运营设计与个人练习/);
-  assert.match(html, /陈思源个人照片/);
-  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+  assert.match(html, /UI DESIGN/);
+  assert.match(html, /PORTFOLIO\./);
+  assert.match(html, /可以叫我胖虎/);
+  assert.match(html, /WELCOME TO MY HOMEPAGE/);
+  assert.match(html, /\/covers\/liangbulu\.webp/);
+  assert.match(html, /\/covers\/canopy\.webp/);
+  assert.match(html, /\/covers\/visual\.webp/);
+  assert.match(html, /陈思源在镜前的生活照片/);
+  assert.doesNotMatch(html, /校级“两笔一画”活动|让产品被看见|codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
 test("renders project artwork in the requested single-column order", async () => {
@@ -49,4 +52,3 @@ test("renders project artwork in the requested single-column order", async () =>
   assert.ok(lastPage > firstPage, "project pages should remain in ascending order");
   assert.match(html, /完整项目展示/);
 });
-

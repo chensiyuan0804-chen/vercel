@@ -5,7 +5,7 @@ export function HeroStage() {
       <div className="hero-glow" aria-hidden="true" />
 
       <div className="hero-topline">
-        <p>UI/UX &amp; VISUAL DESIGNER</p>
+        <p>UI DESIGNER &amp; VISUAL CREATOR</p>
         <p className="hero-availability">
           <span /> Available for opportunities
         </p>
@@ -14,17 +14,11 @@ export function HeroStage() {
       <div className="hero-main">
         <p className="hero-kicker">CHEN SIYUAN · PORTFOLIO 2026</p>
         <h1 id="hero-title">
-          <span>让产品被看见，</span>
-          <span>
-            也被<em>理解。</em>
-          </span>
+          <span>UI DESIGN</span>
+          <span>PORTFOLIO.</span>
         </h1>
         <div className="hero-support">
-          <p>
-            从用户洞察到视觉落地，
-            <br />
-            把复杂体验整理得清晰、自然、有记忆点。
-          </p>
+          <p>从用户洞察到视觉落地，把复杂体验整理得清晰、自然、有记忆点。</p>
           <a className="circle-link" href="#work" aria-label="浏览精选项目">
             <span>浏览项目</span>
             <b aria-hidden="true">↓</b>

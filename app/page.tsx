@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ContactFooter } from "./components/ContactFooter";
 import { HeroStage } from "./components/HeroStage";
+import { ProjectShowcase } from "./components/ProjectShowcase";
 import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { projects } from "./data/projects";
@@ -18,22 +18,17 @@ export default function Home() {
           <span>01</span>
           <p>PROFILE / 设计方法</p>
         </div>
-        <Reveal>
+        <Reveal className="manifesto-method">
           <h2 id="manifesto-title">
-            用同理心理解问题，
+            三组项目都从真实场景出发：
             <br />
-            用<span>秩序</span>建立体验，
+            先梳理用户路径与产品结构，
             <br />
-            用视觉留下记忆。
+            再用统一视觉建立清晰体验，
+            <br />
+            最后以运营思维与 AIGC 完成创意延展。
           </h2>
         </Reveal>
-        <div className="manifesto-aside">
-          <Reveal delay={120}>
-            <p>
-              我关注产品、用户与品牌之间的真实关系。面对复杂需求时，先梳理目标与路径，再用克制的视觉语言让体验变得准确、顺畅。
-            </p>
-          </Reveal>
-        </div>
       </section>
 
       <section className="work-section" id="work" aria-labelledby="work-title">
@@ -47,34 +42,7 @@ export default function Home() {
 
         <div className="project-list">
           {projects.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 80}>
-              <article className="project-card">
-                <Link
-                  className="project-media"
-                  href={`/work/${project.slug}`}
-                  aria-label={`查看${project.title}项目`}
-                >
-                  <img
-                    src={project.cover}
-                    alt={`${project.title}项目封面`}
-                    width="1920"
-                    height={project.slug === "visual-lab" ? "1385" : "1200"}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="project-open" aria-hidden="true">↗</span>
-                </Link>
-                <div className="project-info">
-                  <p className="project-number">{project.number}</p>
-                  <div>
-                    <p className="project-category">{project.category}</p>
-                    <h3>{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                  </div>
-                  <p className="project-year">{project.year}</p>
-                </div>
-              </article>
-            </Reveal>
+            <ProjectShowcase key={project.slug} project={project} index={index} />
           ))}
         </div>
       </section>
@@ -88,10 +56,10 @@ export default function Home() {
           <Reveal className="about-portrait-wrap">
             <figure className="about-portrait">
               <img
-                src="/portrait.webp"
-                alt="陈思源个人照片"
-                width="350"
-                height="482"
+                src="/portrait-casual.webp"
+                alt="陈思源在镜前的生活照片"
+                width="960"
+                height="1280"
                 loading="lazy"
                 decoding="async"
               />
@@ -103,7 +71,7 @@ export default function Home() {
             <Reveal>
               <p className="about-eyebrow">你好，我是陈思源。</p>
               <h2 id="about-title">
-                一名相信“清晰本身就是美感”的 UI/UX 与视觉设计师。
+                可以叫我胖虎，一名对任何事物都十分好奇的 UI 设计师。
               </h2>
             </Reveal>
             <Reveal delay={100}>
@@ -142,7 +110,8 @@ export default function Home() {
                     "C4D",
                     "Midjourney",
                     "ChatGPT",
-                    "UI/UX",
+                    "Codex",
+                    "Tapnow",
                     "AIGC",
                   ].map((skill) => <span key={skill}>{skill}</span>)}
                 </div>
@@ -154,7 +123,6 @@ export default function Home() {
                 <p className="resume-label">SELECTED AWARDS</p>
                 <p>米兰设计周师生优秀作品展 · 全国赛区三等奖</p>
                 <p>米兰设计周师生优秀作品展 · 湖南赛区二等奖</p>
-                <p>校级“两笔一画”活动 · 一等奖</p>
               </div>
             </Reveal>
           </div>

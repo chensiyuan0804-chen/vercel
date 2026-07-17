@@ -21,8 +21,8 @@ export const projects: Project[] = [
     category: "产品重构 · UI/UX · 虚拟项目",
     year: "2026",
     description:
-      "围绕户外用户的真实路径与核心任务，重构信息架构、交互逻辑与视觉系统，让复杂功能更直觉、更有秩序。",
-    cover: "/portfolio/4.webp",
+      "从户外用户的真实任务出发，重新梳理信息架构与核心路径，并用统一的交互和视觉系统降低复杂产品的理解成本。",
+    cover: "/covers/liangbulu.webp",
     pages: Array.from({ length: 16 }, (_, index) => index + 1),
     accent: "#58ef68",
     foreground: "#111312",
@@ -35,8 +35,8 @@ export const projects: Project[] = [
     category: "小程序 · 交互全案 · 品牌体验",
     year: "2025",
     description:
-      "从品牌调性到点单、外卖与会员路径，完成咖啡小程序的完整体验设计，建立统一又有温度的消费触点。",
-    cover: "/portfolio/18.webp",
+      "以品牌氛围统领点单、外卖与会员路径，把消费任务、内容触点和视觉语言整合成连贯而有温度的小程序体验。",
+    cover: "/covers/canopy.webp",
     pages: Array.from({ length: 16 }, (_, index) => index + 17),
     accent: "#ffcc43",
     foreground: "#121212",
@@ -49,8 +49,8 @@ export const projects: Project[] = [
     category: "运营活动 · 主视觉 · AIGC",
     year: "2025—2026",
     description:
-      "聚合活动主视觉、运营增长场景与 AIGC 练习，展示从概念发散、氛围塑造到成套物料延展的视觉能力。",
-    cover: "/portfolio/34.webp",
+      "以运营目标确定视觉主题，再通过 AIGC 辅助概念发散与资产制作，将主视觉延展为可持续使用的成套传播物料。",
+    cover: "/covers/visual.webp",
     pages: Array.from({ length: 14 }, (_, index) => index + 33),
     accent: "#a4150f",
     foreground: "#fff8ec",
