@@ -27,7 +27,7 @@ export function HeroStage() {
       </div>
 
       <div className="hero-footer">
-        <p>Based in Hunan, China</p>
+        <p>Based in Jiangsu, China</p>
         <p>Scroll to explore</p>
       </div>
 
@@ -46,4 +46,3 @@ export function HeroStage() {
     </section>
   );
 }
-
