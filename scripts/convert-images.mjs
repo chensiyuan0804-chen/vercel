@@ -13,14 +13,13 @@ const files = (await readdir(sourceDir))
 
 for (const file of files) {
   const source = path.join(sourceDir, file);
-  const image = sharp(source, { failOn: "none" });
-  const metadata = await image.metadata();
   const output = path.join(outputDir, file.replace(/\.png$/i, ".webp"));
 
-  await image
-    .webp({ quality: 88, effort: 6, smartSubsample: true })
+  await sharp(source, { failOn: "none" })
+    .resize({ width: 1600, withoutEnlargement: true })
+    .webp({ quality: 80, effort: 6, smartSubsample: true })
     .toFile(output);
 
-  console.log(`${file}: ${metadata.width}x${metadata.height}`);
+  console.log(`Optimized ${file}`);
 }
 
