@@ -6,6 +6,7 @@ import "./project-layout-v4.css";
 import "./project-layout-v5.css";
 import "./project-layout-v6.css";
 import "./project-media-v7.css";
+import "./portfolio-polish-v9.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();

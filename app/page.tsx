@@ -1,5 +1,6 @@
 import { ContactFooter } from "./components/ContactFooter";
 import { HeroStage } from "./components/HeroStage";
+import { ManifestoMotion } from "./components/ManifestoMotion";
 import { ProjectShowcase } from "./components/ProjectShowcase";
 import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
@@ -18,17 +19,7 @@ export default function Home() {
           <span>01</span>
           <p>PROFILE / 设计方法</p>
         </div>
-        <Reveal className="manifesto-method">
-          <h2 id="manifesto-title">
-            四组项目都从真实场景出发：
-            <br />
-            先梳理用户路径与产品结构，
-            <br />
-            再用统一视觉建立清晰体验，
-            <br />
-            最后以运营思维与 AIGC 完成创意延展。
-          </h2>
-        </Reveal>
+        <ManifestoMotion />
       </section>
 
       <section className="work-section" id="work" aria-label="精选项目">
@@ -116,7 +107,6 @@ export default function Home() {
                     "ChatGPT",
                     "Codex",
                     "Tapnow",
-                    "AIGC",
                   ].map((skill) => <span key={skill}>{skill}</span>)}
                 </div>
               </div>

@@ -1,0 +1,263 @@
+@font-face {
+  font-family: "Biaoxiaozhi Wujiehei";
+  src: url("/fonts/biaoxiaozhi-wujiehei.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "FZChaoCuHei-M10S";
+  src: url("/fonts/fzchaocuhei-m10s.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.manifesto {
+  overflow: hidden;
+}
+
+.manifesto-motion {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(44px, 5vw, 78px) 0;
+  isolation: isolate;
+  perspective: 1200px;
+}
+
+.manifesto-motion::before {
+  position: absolute;
+  z-index: -2;
+  inset: 8% 4%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 42%, rgb(255 118 85 / 16%), transparent 32%),
+    radial-gradient(circle at 72% 62%, rgb(127 177 255 / 13%), transparent 34%);
+  filter: blur(42px);
+  content: "";
+}
+
+.manifesto-title-motion {
+  position: relative;
+  z-index: 2;
+  max-width: none !important;
+  font-size: clamp(31px, 4.25vw, 66px) !important;
+  line-height: 1.26 !important;
+  letter-spacing: -0.052em !important;
+  text-align: center;
+}
+
+.manifesto .manifesto-title-motion span {
+  position: static;
+  color: inherit;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.manifesto .manifesto-title-motion span::after {
+  content: none;
+}
+.manifesto .manifesto-title-motion .manifesto-line {
+  display: block;
+  overflow: hidden;
+  margin: -0.08em 0;
+  padding: 0.12em 0.08em;
+}
+
+.manifesto .manifesto-title-motion .manifesto-line-inner {
+  display: inline-flex;
+  justify-content: center;
+  white-space: nowrap;
+  transform-style: preserve-3d;
+}
+
+.manifesto .manifesto-title-motion .manifesto-segment {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+}
+
+.manifesto .manifesto-title-motion .manifesto-segment-accent {
+  --accent-progress: 0%;
+}
+
+.manifesto .manifesto-title-motion .manifesto-segment-accent::after {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0.08em;
+  left: 0;
+  width: var(--accent-progress);
+  height: 0.15em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7655, #ffb057);
+  box-shadow: 0 0 28px rgb(255 118 85 / 42%);
+  transform: skewX(-14deg);
+  transform-origin: left center;
+  content: "";
+}
+
+.manifesto .manifesto-title-motion .manifesto-char {
+  display: inline-block;
+  backface-visibility: hidden;
+}
+
+.manifesto-orbit {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(52vw, 720px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+.manifesto-orbit::before,
+.manifesto-orbit::after,
+.manifesto-orbit-core {
+  position: absolute;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: inherit;
+  content: "";
+}
+
+.manifesto-orbit::before {
+  inset: 11%;
+}
+
+.manifesto-orbit::after {
+  inset: 27%;
+  border-color: rgb(255 118 85 / 22%);
+}
+
+.manifesto-orbit-core {
+  inset: 39%;
+  border-top-color: #ff7655;
+  border-right-color: transparent;
+}
+
+.manifesto-scan {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 5%),
+    rgb(255 255 255 / 22%),
+    transparent
+  );
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.case-heading h1 {
+  width: 100%;
+  max-width: none;
+  font-family: "Biaoxiaozhi Wujiehei", sans-serif;
+  font-size: clamp(44px, 6.4vw, 104px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.case-page-liangbulu .case-heading h1 {
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+
+.case-english {
+  font-family: "FZChaoCuHei-M10S", sans-serif;
+  font-size: clamp(18px, 2vw, 31px);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.case-page-liangbulu .case-intro {
+  grid-column: 1 / -1;
+}
+
+.case-page-liangbulu .case-intro > p:first-child {
+  max-width: none;
+  font-size: clamp(12px, 1.08vw, 16px);
+  white-space: nowrap;
+}
+
+.case-page-personal-practice .case-hero,
+.case-page-personal-practice .case-images,
+.case-page-personal-practice .case-videos {
+  background: #302900;
+}
+
+@media (max-width: 720px) {
+  .manifesto-motion {
+    padding-block: 30px;
+  }
+
+  .manifesto-title-motion {
+    font-size: clamp(20px, 6.1vw, 31px) !important;
+    line-height: 1.32 !important;
+  }
+
+  .manifesto .manifesto-title-motion .manifesto-line {
+    overflow: visible;
+    margin: 0;
+    padding-block: 0.08em;
+  }
+
+  .manifesto .manifesto-title-motion .manifesto-line-inner {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  .manifesto-orbit {
+    width: 92vw;
+    opacity: 0.62;
+  }
+
+  .manifesto-scan {
+    opacity: 0.55;
+  }
+
+  .case-heading h1 {
+    font-size: clamp(28px, 8.2vw, 48px);
+    letter-spacing: -0.04em;
+  }
+
+  .case-english {
+    font-size: clamp(17px, 5.2vw, 24px);
+  }
+
+  .case-page-liangbulu .case-intro {
+    grid-column: 1;
+  }
+
+  .case-page-liangbulu .case-intro > p:first-child {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .manifesto-char,
+  .manifesto-line-inner,
+  .manifesto-orbit,
+  .manifesto-scan {
+    will-change: auto;
+  }
+
+  .manifesto-scan {
+    display: none;
+  }
+}

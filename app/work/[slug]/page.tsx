@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <main className="case-page">
+    <main className={`case-page case-page-${project.slug}`}>
       <ScrollProgress />
       <header className="case-nav">
         <Link href="/#work" aria-label="返回精选项目">← 返回项目</Link>
@@ -96,7 +96,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <source src={video.src} type="video/mp4" />
                 Video playback is not supported by this browser.
               </video>
-              <figcaption>{video.label}</figcaption>
             </figure>
           ))}
         </section>
