@@ -1,0 +1,97 @@
+/* Dark homepage sections, responsive media, and editorial continuity. */
+
+.manifesto,
+.work-section {
+  color: #eef2ee;
+  background: #0f1110;
+}
+
+.manifesto {
+  border-top: 1px solid rgb(255 255 255 / 8%);
+}
+
+.manifesto .section-label,
+.work-section .section-label {
+  color: rgb(238 242 238 / 64%);
+}
+
+.manifesto .section-label span,
+.work-section .section-label span {
+  border-color: rgb(255 255 255 / 25%);
+  color: #eef2ee;
+}
+
+.manifesto-method h2 {
+  color: #f4f6f3;
+}
+
+.work-section .section-heading {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+.work-section .project-showcase,
+.work-section .project-showcase + .project-showcase {
+  border-color: rgb(255 255 255 / 11%);
+}
+
+.work-section .project-showcase .project-card {
+  background: #0f1110;
+}
+
+.work-section .project-info-top {
+  border-color: rgb(255 255 255 / 15%);
+}
+
+.work-section .project-number,
+.work-section .project-year,
+.work-section .project-info h3,
+.work-section .project-info h3 a {
+  color: #f1f4f0;
+}
+
+.work-section .project-category {
+  color: rgb(238 242 238 / 58%);
+}
+
+.work-section .project-description {
+  color: rgb(238 242 238 / 68%);
+}
+
+.case-videos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 24px);
+  padding: clamp(24px, 4vw, 64px) clamp(20px, 4.2vw, 68px) clamp(72px, 10vw, 160px);
+  background: #0f1110;
+}
+
+.case-video {
+  margin: 0;
+  min-width: 0;
+}
+
+.case-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: clamp(14px, 1.7vw, 26px);
+  background: #080808;
+}
+
+.case-video figcaption {
+  margin-top: 12px;
+  color: rgb(255 255 255 / 64%);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .case-videos {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-inline: 16px;
+  }
+}

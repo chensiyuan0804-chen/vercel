@@ -9,6 +9,11 @@ export type Project = {
   cover: string;
   coverHeight?: number;
   pages: number[];
+  detailImages?: string[];
+  videos?: Array<{
+    src: string;
+    label: string;
+  }>;
   accent: string;
   foreground: string;
 };
@@ -71,8 +76,32 @@ export const projects: Project[] = [
     cover: "/covers/personal-practice.webp",
     coverHeight: 995,
     pages: [46],
+    videos: [
+      { src: "/videos/jingdong.mp4", label: "\u4eac\u4e1c" },
+      { src: "/videos/dinosaur.mp4", label: "\u6050\u9f99" },
+      { src: "/videos/girl.mp4", label: "\u5973\u5b69" },
+    ],
     accent: "#102c3d",
     foreground: "#e9f4fa",
+  },
+  {
+    slug: "beyond-design",
+    number: "05",
+    title: "\u8bbe\u8ba1\u4e4b\u5916",
+    englishTitle: "Beyond Design",
+    category: "\u751f\u6d3b\u8bb0\u5f55 \u00b7 \u5174\u8da3\u63a2\u7d22",
+    year: "2026",
+    description:
+      "\u628a\u89c6\u7ebf\u4ece\u5c4f\u5e55\u79fb\u5411\u65e5\u5e38\uff0c\u5728\u8bbe\u8ba1\u4e4b\u5916\u6301\u7eed\u8bb0\u5f55\u751f\u6d3b\u3001\u89c2\u5bdf\u4e16\u754c\uff0c\u4e5f\u4fdd\u7559\u597d\u5947\u5fc3\u81ea\u7136\u751f\u957f\u7684\u75d5\u8ff9\u3002",
+    cover: "/covers/beyond-design.webp",
+    coverHeight: 592,
+    pages: [],
+    detailImages: Array.from(
+      { length: 28 },
+      (_, index) => `/beyond-design/${index}.webp`,
+    ),
+    accent: "#d9c9ad",
+    foreground: "#171614",
   },
 ];
 

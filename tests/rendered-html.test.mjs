@@ -49,3 +49,23 @@ test("limits personal practice to page 46", async () => {
   assert.match(html, /\/portfolio\/46\.webp/);
   assert.doesNotMatch(html, /\/portfolio\/43\.webp|\/portfolio\/44\.webp|\/portfolio\/45\.webp/);
 });
+
+test("personal practice renders three videos", async () => {
+  const response = await render("/work/personal-practice");
+  assert.equal(response.status, 200);
+  const body = await response.text();
+  assert.equal((body.match(/<video/g) || []).length, 3);
+  assert.match(body, /\/videos\/jingdong\.mp4/);
+  assert.match(body, /\/videos\/dinosaur\.mp4/);
+  assert.match(body, /\/videos\/girl\.mp4/);
+});
+
+test("beyond design keeps all folder images in numeric order", async () => {
+  const response = await render("/work/beyond-design");
+  assert.equal(response.status, 200);
+  const body = await response.text();
+  for (let index = 0; index < 28; index += 1) {
+    assert.match(body, new RegExp(`/beyond-design/${index}\\.webp`));
+  }
+  assert.ok(body.indexOf("/beyond-design/2.webp") < body.indexOf("/beyond-design/10.webp"));
+});

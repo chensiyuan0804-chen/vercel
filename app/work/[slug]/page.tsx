@@ -71,7 +71,32 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             decoding={index < 2 ? "sync" : "async"}
           />
         ))}
+
+        {project.detailImages?.map((src, index) => (
+          <img
+            key={src}
+            src={src}
+            alt={`${project.title} work ${index + 1}`}
+            width="1920"
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding={index < 2 ? "sync" : "async"}
+          />
+        ))}
       </section>
+
+      {project.videos?.length ? (
+        <section className="case-videos" aria-label={`${project.title} motion works`}>
+          {project.videos.map((video) => (
+            <figure className="case-video" key={video.src}>
+              <video controls playsInline preload="metadata" aria-label={`${video.label} motion work`}>
+                <source src={video.src} type="video/mp4" />
+                Video playback is not supported by this browser.
+              </video>
+              <figcaption>{video.label}</figcaption>
+            </figure>
+          ))}
+        </section>
+      ) : null}
 
       <section className="next-project">
         <p>NEXT PROJECT · {nextProject.number}</p>
