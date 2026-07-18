@@ -13,6 +13,32 @@ async function render(pathname = "/") {
   );
 }
 
+test("initializes the Cloudflare worker without scheduling global timers", async () => {
+  const originalSetTimeout = globalThis.setTimeout;
+  globalThis.setTimeout = (...args) => {
+    const stack = new Error().stack ?? "";
+    if (stack.includes("ManifestoMotion")) {
+      throw new Error("ManifestoMotion scheduled a timer during SSR module initialization");
+    }
+    return originalSetTimeout(...args);
+  };
+
+  try {
+    const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+    workerUrl.searchParams.set("global-scope-test", `${process.pid}-${Date.now()}`);
+    const { default: worker } = await import(workerUrl.href);
+    assert.equal(typeof worker.fetch, "function");
+    const response = await worker.fetch(
+      new Request("http://localhost/", { headers: { accept: "text/html" } }),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    assert.equal(response.status, 200);
+  } finally {
+    globalThis.setTimeout = originalSetTimeout;
+  }
+});
+
 test("renders project information before each homepage cover", async () => {
   const response = await render();
   assert.equal(response.status, 200);
