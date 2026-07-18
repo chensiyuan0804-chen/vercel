@@ -55,6 +55,10 @@ test("personal practice renders three videos", async () => {
   assert.equal(response.status, 200);
   const body = await response.text();
   assert.equal((body.match(/<video/g) || []).length, 3);
+  assert.equal((body.match(/autoplay=""/gi) || []).length, 3);
+  assert.equal((body.match(/loop=""/gi) || []).length, 3);
+  assert.equal((body.match(/muted=""/gi) || []).length, 3);
+  assert.doesNotMatch(body, /<video[^>]*controls/i);
   assert.match(body, /\/videos\/jingdong\.mp4/);
   assert.match(body, /\/videos\/dinosaur\.mp4/);
   assert.match(body, /\/videos\/girl\.mp4/);
@@ -64,6 +68,7 @@ test("beyond design keeps all folder images in numeric order", async () => {
   const response = await render("/work/beyond-design");
   assert.equal(response.status, 200);
   const body = await response.text();
+  assert.match(body, /class="case-images-compact"/);
   for (let index = 0; index < 28; index += 1) {
     assert.match(body, new RegExp(`/beyond-design/${index}\\.webp`));
   }

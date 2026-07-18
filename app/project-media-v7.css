@@ -95,3 +95,25 @@
     padding-inline: 16px;
   }
 }
+
+.case-images-compact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(14px, 1.8vw, 28px);
+  padding: clamp(24px, 4vw, 64px);
+}
+
+.case-images-compact img {
+  display: block;
+  width: 100%;
+  border-radius: clamp(8px, 0.8vw, 14px);
+  background: #191a19;
+}
+
+@media (max-width: 720px) {
+  .case-images-compact {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+}

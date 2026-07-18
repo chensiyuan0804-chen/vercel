@@ -72,23 +72,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           />
         ))}
 
-        {project.detailImages?.map((src, index) => (
-          <img
-            key={src}
-            src={src}
-            alt={`${project.title} work ${index + 1}`}
-            width="1920"
-            loading={index < 2 ? "eager" : "lazy"}
-            decoding={index < 2 ? "sync" : "async"}
-          />
-        ))}
+        {project.detailImages?.length ? (
+          <div className="case-images-compact">
+            {project.detailImages.map((src, index) => (
+              <img
+                key={src}
+                src={src}
+                alt={`${project.title} work ${index + 1}`}
+                width="1920"
+                loading={index < 2 ? "eager" : "lazy"}
+                decoding={index < 2 ? "sync" : "async"}
+              />
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {project.videos?.length ? (
         <section className="case-videos" aria-label={`${project.title} motion works`}>
           {project.videos.map((video) => (
             <figure className="case-video" key={video.src}>
-              <video controls playsInline preload="metadata" aria-label={`${video.label} motion work`}>
+              <video autoPlay loop muted playsInline preload="auto" aria-label={`${video.label} motion work`}>
                 <source src={video.src} type="video/mp4" />
                 Video playback is not supported by this browser.
               </video>
