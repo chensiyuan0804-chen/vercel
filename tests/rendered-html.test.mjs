@@ -138,6 +138,7 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   assert.match(motion, /两组项目都从/);
   assert.match(motion, /使用AI工具辅助完成创意延展/);
   assert.doesNotMatch(motion, /四组项目都从|最后以运营思维与/);
+  assert.doesNotMatch(motion, /出发：|与产品结构，|建立清晰体验，/);
 
   const contact = await readFile(new URL("../app/components/ContactFooter.tsx", import.meta.url), "utf8");
   assert.match(contact, /contact-jump-char/);
@@ -152,6 +153,7 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   const finalRefinements = await readFile(new URL("../app/portfolio-polish-v12.css", import.meta.url), "utf8");
   assert.match(finalRefinements, /\.case-title-row[\s\S]*justify-content: center/);
   assert.match(finalRefinements, /\.case-title-row \.case-number,[\s\S]*font-size: var\(--case-title-size\)/);
+  assert.match(finalRefinements, /\.manifesto \.manifesto-title-motion \.manifesto-line[\s\S]*justify-content: center/);
   assert.match(finalRefinements, /@keyframes contact-jump-active/);
   assert.match(finalRefinements, /@media \(prefers-reduced-motion: reduce\)/);
 

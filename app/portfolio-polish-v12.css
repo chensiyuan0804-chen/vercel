@@ -13,6 +13,18 @@
   font-size: clamp(16px, 1.25vw, 19px);
 }
 
+.manifesto .manifesto-title-motion .manifesto-line {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.manifesto .manifesto-title-motion .manifesto-line-inner {
+  margin-inline: auto;
+  justify-content: center;
+}
+
 .case-hero {
   --case-title-size: clamp(44px, 6.4vw, 104px);
 }
