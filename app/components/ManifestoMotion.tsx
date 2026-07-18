@@ -16,7 +16,7 @@ type ManifestoSegment = {
 
 const manifestoLines: ManifestoSegment[][] = [
   [
-    { text: "四组项目都从" },
+    { text: "两组项目都从" },
     { text: "真实场景", accent: true },
     { text: "出发：" },
   ],
@@ -31,14 +31,14 @@ const manifestoLines: ManifestoSegment[][] = [
     { text: "建立清晰体验，" },
   ],
   [
-    { text: "最后以运营思维与 " },
-    { text: "AIGC", accent: true },
-    { text: " 完成创意延展。" },
+    { text: "使用" },
+    { text: "AI工具", accent: true },
+    { text: "辅助完成创意延展" },
   ],
 ];
 
 const manifestoLabel =
-  "四组项目都从真实场景出发：先梳理用户路径与产品结构，再用统一视觉建立清晰体验，最后以运营思维与 AIGC 完成创意延展。";
+  "两组项目都从真实场景出发：先梳理用户路径与产品结构，再用统一视觉建立清晰体验，使用AI工具辅助完成创意延展";
 
 export function ManifestoMotion() {
   const rootRef = useRef<HTMLDivElement>(null);

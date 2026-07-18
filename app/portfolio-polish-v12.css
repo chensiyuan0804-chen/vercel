@@ -1,0 +1,174 @@
+/* Unified case introductions and final homepage alignment refinements. */
+
+.work-section .project-info-main > h3,
+.work-section .project-summary {
+  align-self: start;
+}
+
+.work-section .project-description {
+  transform: none;
+}
+
+.about-copy .about-eyebrow {
+  font-size: clamp(16px, 1.25vw, 19px);
+}
+
+.case-hero {
+  --case-title-size: clamp(44px, 6.4vw, 104px);
+}
+
+.case-title-row {
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: stretch;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(72px, 8vw, 144px);
+  translate: 0 clamp(-56px, -4vw, -28px);
+}
+
+.case-title-row .case-number,
+.case-title-row .case-heading h1 {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  font-family: "Biaoxiaozhi Wujiehei", sans-serif;
+  font-size: var(--case-title-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+
+.case-title-row .case-number,
+.case-title-row .case-heading {
+  align-self: center;
+}
+
+.case-title-row .case-heading {
+  min-width: 0;
+}
+
+.contact-copy > a .contact-jump-text {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+  font-size: inherit;
+  line-height: inherit;
+  transform: none;
+  transition: none;
+}
+
+.contact-copy > a .contact-jump-char {
+  display: inline-block;
+  font-size: inherit;
+  line-height: inherit;
+  transform: translate3d(0, 0, 0);
+  transform-origin: 50% 100%;
+  transition: none;
+  animation: contact-jump-idle 5.6s cubic-bezier(0.22, 1, 0.36, 1) infinite both;
+}
+
+.contact-copy > a .contact-arrow {
+  flex: 0 0 auto;
+  font-size: 0.55em;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-copy > a:is(:hover, :focus-visible) .contact-jump-text {
+  transform: none;
+}
+
+.contact-copy > a:is(:hover, :focus-visible) .contact-jump-char {
+  animation-name: contact-jump-active;
+  animation-duration: 720ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+.contact-copy > a:is(:hover, :focus-visible) .contact-arrow {
+  transform: translate3d(10px, -10px, 0);
+}
+
+@keyframes contact-jump-idle {
+  0%,
+  74%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+
+  81% {
+    transform: translate3d(0, -0.1em, 0) rotate(-0.8deg);
+  }
+
+  87% {
+    transform: translate3d(0, 0.025em, 0) rotate(0.2deg);
+  }
+
+  91% {
+    transform: translate3d(0, -0.012em, 0) rotate(0);
+  }
+}
+
+@keyframes contact-jump-active {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+
+  42% {
+    transform: translate3d(0, -0.16em, 0) rotate(-1.1deg);
+  }
+
+  64% {
+    transform: translate3d(0, 0.035em, 0) rotate(0.25deg);
+  }
+
+  80% {
+    transform: translate3d(0, -0.018em, 0) rotate(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .case-hero {
+    --case-title-size: clamp(26px, 7.4vw, 40px);
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 24px;
+    padding-top: 48px;
+  }
+
+  .case-title-row {
+    grid-column: 1;
+    gap: clamp(18px, 5vw, 28px);
+    translate: 0 -12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .case-hero {
+    --case-title-size: clamp(22px, 6.8vw, 25px);
+  }
+
+  .case-title-row {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-copy > a .contact-jump-char {
+    animation: none;
+    transform: none;
+  }
+
+  .contact-copy > a .contact-arrow {
+    transition: none;
+  }
+
+  .contact-copy > a:is(:hover, :focus-visible) .contact-arrow {
+    transform: none;
+  }
+}

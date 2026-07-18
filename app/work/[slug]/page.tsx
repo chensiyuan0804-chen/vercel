@@ -48,10 +48,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           "--case-foreground": project.foreground,
         } as CSSProperties}
       >
-        <div className="case-number">{project.number}</div>
-        <div className="case-heading">
-          <h1>{project.title}</h1>
-          <p className="case-english">{project.englishTitle}</p>
+        <div className="case-title-row">
+          <div className="case-number">{project.number}</div>
+          <div className="case-heading">
+            <h1>{project.title}</h1>
+          </div>
         </div>
         <div className="case-intro">
           <p>{project.description}</p>

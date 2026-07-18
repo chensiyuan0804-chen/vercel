@@ -135,12 +135,29 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   assert.match(motion, /finePointer/);
   assert.match(motion, /gsap\.quickTo/);
   assert.match(motion, /manifesto-pointer-glow/);
+  assert.match(motion, /两组项目都从/);
+  assert.match(motion, /使用AI工具辅助完成创意延展/);
+  assert.doesNotMatch(motion, /四组项目都从|最后以运营思维与/);
+
+  const contact = await readFile(new URL("../app/components/ContactFooter.tsx", import.meta.url), "utf8");
+  assert.match(contact, /contact-jump-char/);
+  assert.match(contact, /有合适的机会 \/ 项目？通过邮件联系/);
 
   const refinements = await readFile(new URL("../app/portfolio-polish-v11.css", import.meta.url), "utf8");
   assert.match(refinements, /\.hero h1[\s\S]*Biaoxiaozhi Wujiehei/);
   assert.match(refinements, /\.work-section \.project-info h3/);
   assert.match(refinements, /\.case-number[\s\S]*Biaoxiaozhi Wujiehei/);
   assert.match(refinements, /\.case-page-personal-practice \.case-videos[\s\S]*#0f1110/);
+
+  const finalRefinements = await readFile(new URL("../app/portfolio-polish-v12.css", import.meta.url), "utf8");
+  assert.match(finalRefinements, /\.case-title-row[\s\S]*justify-content: center/);
+  assert.match(finalRefinements, /\.case-title-row \.case-number,[\s\S]*font-size: var\(--case-title-size\)/);
+  assert.match(finalRefinements, /@keyframes contact-jump-active/);
+  assert.match(finalRefinements, /@media \(prefers-reduced-motion: reduce\)/);
+
+  const caseTemplate = await readFile(new URL("../app/work/[slug]/page.tsx", import.meta.url), "utf8");
+  assert.match(caseTemplate, /case-title-row/);
+  assert.doesNotMatch(caseTemplate, /case-english/);
 });
 
 test("case heroes omit categories and preserve the aligned project identity", async () => {
@@ -163,5 +180,7 @@ test("case heroes omit categories and preserve the aligned project identity", as
     assert.ok(heroStart >= 0);
     assert.doesNotMatch(hero, new RegExp(category));
     assert.match(hero, new RegExp('<div class="case-number">' + number + '</div>[\\s\\S]*?<h1>' + title + '</h1>'));
+    assert.match(hero, /class="case-title-row"/);
+    assert.doesNotMatch(hero, /case-english/);
   }
 });
