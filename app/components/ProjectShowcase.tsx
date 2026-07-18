@@ -7,9 +7,10 @@ import type { Project } from "../data/projects";
 type ProjectShowcaseProps = {
   project: Project;
   index: number;
+  total: number;
 };
 
-export function ProjectShowcase({ project, index }: ProjectShowcaseProps) {
+export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -19,14 +20,19 @@ export function ProjectShowcase({ project, index }: ProjectShowcaseProps) {
     node.dataset.ready = "true";
     const observer = new IntersectionObserver(
       ([entry]) => {
-        node.dataset.active = entry.isIntersecting ? "true" : "false";
+        if (!entry.isIntersecting) return;
+        node.dataset.active = "true";
+        observer.unobserve(node);
       },
-      { threshold: 0.28, rootMargin: "-8% 0px -12%" },
+      { threshold: 0.2, rootMargin: "-6% 0px -10%" },
     );
 
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  const totalLabel = String(total).padStart(2, "0");
+  const projectHref = `/work/${project.slug}`;
 
   return (
     <section
@@ -36,35 +42,65 @@ export function ProjectShowcase({ project, index }: ProjectShowcaseProps) {
     >
       <article className="project-card">
         <Link
-          className="project-media"
-          href={`/work/${project.slug}`}
+          className={`project-media${project.coverImages ? " project-media--collage" : ""}`}
+          href={projectHref}
           aria-label={`查看${project.title}项目`}
         >
-          <img
-            src={project.cover}
-            alt={`${project.title}项目封面`}
-            width="1600"
-            height={project.slug === "visual-lab" ? "900" : "1000"}
-            loading={index === 0 ? "eager" : "lazy"}
-            decoding={index === 0 ? "sync" : "async"}
-          />
+          {project.coverImages ? (
+            <div className="project-collage" aria-hidden="true">
+              <span className="project-collage-label">
+                PERSONAL <em>PRACTICE</em>
+              </span>
+              <div className="project-collage-grid">
+                {project.coverImages.map((page) => (
+                  <figure key={page}>
+                    <img
+                      src={`/portfolio/${page}.webp`}
+                      alt=""
+                      width="720"
+                      height="1280"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <img
+              src={project.cover}
+              alt={`${project.title}项目封面`}
+              width="1600"
+              height={project.coverHeight ?? 1000}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding={index === 0 ? "sync" : "async"}
+            />
+          )}
           <span className="project-open" aria-hidden="true">↗</span>
           <span className="project-stage-index" aria-hidden="true">
-            {project.number} / 03
+            {project.number} / {totalLabel}
           </span>
         </Link>
 
         <div className="project-info">
-          <p className="project-number">{project.number}</p>
-          <div className="project-copy">
+          <div className="project-info-top">
+            <p className="project-number">PROJECT {project.number}</p>
             <p className="project-category">{project.category}</p>
-            <h3 id={`project-${project.slug}`}>{project.title}</h3>
-            <p className="project-description">{project.description}</p>
+            <p className="project-year">{project.year}</p>
           </div>
-          <p className="project-year">{project.year}</p>
+          <div className="project-info-main">
+            <h3 id={`project-${project.slug}`}>
+              <Link href={projectHref}>{project.title}</Link>
+            </h3>
+            <div className="project-summary">
+              <p className="project-description">{project.description}</p>
+              <Link className="project-view" href={projectHref}>
+                VIEW PROJECT <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </article>
     </section>
   );
 }
-

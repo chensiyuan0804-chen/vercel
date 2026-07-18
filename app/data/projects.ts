@@ -7,6 +7,8 @@ export type Project = {
   year: string;
   description: string;
   cover: string;
+  coverImages?: number[];
+  coverHeight?: number;
   pages: number[];
   accent: string;
   foreground: string;
@@ -23,6 +25,7 @@ export const projects: Project[] = [
     description:
       "从户外用户的真实任务出发，重新梳理信息架构与核心路径，并用统一的交互和视觉系统降低复杂产品的理解成本。",
     cover: "/covers/liangbulu.webp",
+    coverHeight: 1000,
     pages: Array.from({ length: 16 }, (_, index) => index + 1),
     accent: "#58ef68",
     foreground: "#111312",
@@ -37,6 +40,7 @@ export const projects: Project[] = [
     description:
       "以品牌氛围统领点单、外卖与会员路径，把消费任务、内容触点和视觉语言整合成连贯而有温度的小程序体验。",
     cover: "/covers/canopy.webp",
+    coverHeight: 1000,
     pages: Array.from({ length: 16 }, (_, index) => index + 17),
     accent: "#ffcc43",
     foreground: "#121212",
@@ -44,20 +48,36 @@ export const projects: Project[] = [
   {
     slug: "visual-lab",
     number: "03",
-    title: "运营设计与个人练习",
-    englishTitle: "Visual Lab",
+    title: "运营设计",
+    englishTitle: "Operation Design",
     category: "运营活动 · 主视觉 · AIGC",
     year: "2025—2026",
     description:
       "以运营目标确定视觉主题，再通过 AIGC 辅助概念发散与资产制作，将主视觉延展为可持续使用的成套传播物料。",
     cover: "/covers/visual.webp",
-    pages: Array.from({ length: 14 }, (_, index) => index + 33),
+    coverHeight: 900,
+    pages: Array.from({ length: 10 }, (_, index) => index + 33),
     accent: "#a4150f",
     foreground: "#fff8ec",
+  },
+  {
+    slug: "personal-practice",
+    number: "04",
+    title: "个人练习",
+    englishTitle: "Personal Practice",
+    category: "视觉探索 · 界面练习 · AIGC",
+    year: "2024—2026",
+    description:
+      "通过海报、图标与界面概念等自主练习，持续探索不同视觉风格、信息层级与 AIGC 辅助创作方式。",
+    cover: "/portfolio/43.webp",
+    coverImages: [43, 44, 46],
+    coverHeight: 1000,
+    pages: Array.from({ length: 4 }, (_, index) => index + 43),
+    accent: "#102c3d",
+    foreground: "#e9f4fa",
   },
 ];
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
 }
-

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 import "./portfolio-update.css";
+import "./project-layout-v4.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -26,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | CHEN SIYUAN",
     },
     description:
-      "陈思源的 UI 设计作品集，包含产品体验升级、小程序全案、运营视觉与 AIGC 练习。",
+      "陈思源的 UI 设计作品集，包含产品体验升级、小程序全案、运营设计与个人视觉练习。",
     keywords: ["陈思源", "UI设计师", "UX设计", "视觉设计", "作品集"],
     authors: [{ name: "陈思源" }],
     openGraph: {

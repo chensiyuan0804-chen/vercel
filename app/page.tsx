@@ -20,7 +20,7 @@ export default function Home() {
         </div>
         <Reveal className="manifesto-method">
           <h2 id="manifesto-title">
-            三组项目都从真实场景出发：
+            四组项目都从真实场景出发：
             <br />
             先梳理用户路径与产品结构，
             <br />
@@ -42,7 +42,12 @@ export default function Home() {
 
         <div className="project-list">
           {projects.map((project, index) => (
-            <ProjectShowcase key={project.slug} project={project} index={index} />
+            <ProjectShowcase
+              key={project.slug}
+              project={project}
+              index={index}
+              total={projects.length}
+            />
           ))}
         </div>
       </section>
@@ -133,4 +138,3 @@ export default function Home() {
     </main>
   );
 }
-
