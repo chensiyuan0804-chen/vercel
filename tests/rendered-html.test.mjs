@@ -48,6 +48,7 @@ test("renders project information before each homepage cover", async () => {
   assert.match(body, /<div class="project-info">[\s\S]*?<a href="\/work\/liangbulu" class="project-media"/);
   assert.match(body, /\/covers\/personal-practice\.webp/);
   assert.match(body, /id="manifesto-title"/);
+  assert.match(body, /UI\/UX DESIGN/);
   assert.match(body, /\u5c06\u89c6\u7ebf\u79fb\u5411\u8bbe\u8ba1\u4e4b\u5916\uff0c\u4e00\u4e9b\u6211\u7684\u65e5\u5e38\u7684\u8bb0\u5f55\u4e0e\u6210\u957f\u7684\u75d5\u8ff9/);
   const skills = body.slice(body.indexOf('<div class="skill-list">'), body.indexOf('</div>', body.indexOf('<div class="skill-list">')));
   assert.doesNotMatch(skills, /AIGC/);
@@ -131,4 +132,36 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   const motion = await readFile(new URL("../app/components/ManifestoMotion.tsx", import.meta.url), "utf8");
   assert.match(motion, /ScrollTrigger/);
   assert.match(motion, /prefers-reduced-motion/);
+  assert.match(motion, /finePointer/);
+  assert.match(motion, /gsap\.quickTo/);
+  assert.match(motion, /manifesto-pointer-glow/);
+
+  const refinements = await readFile(new URL("../app/portfolio-polish-v11.css", import.meta.url), "utf8");
+  assert.match(refinements, /\.hero h1[\s\S]*Biaoxiaozhi Wujiehei/);
+  assert.match(refinements, /\.work-section \.project-info h3/);
+  assert.match(refinements, /\.case-number[\s\S]*Biaoxiaozhi Wujiehei/);
+  assert.match(refinements, /\.case-page-personal-practice \.case-videos[\s\S]*#0f1110/);
+});
+
+test("case heroes omit categories and preserve the aligned project identity", async () => {
+  const cases = [
+    ["/work/liangbulu", "产品重构 · UI/UX · 虚拟项目", "01", "两步路用户体验升级"],
+    ["/work/canopy-coffee", "小程序 · 交互全案 · 品牌体验", "02", "轮本咖啡小程序"],
+    ["/work/visual-lab", "运营活动 · 主视觉 · AIGC", "03", "运营设计"],
+    ["/work/personal-practice", "图标练习 · AIGC", "04", "个人练习"],
+    ["/work/beyond-design", "生活记录 · 兴趣探索", "05", "设计之外"],
+  ];
+
+  for (const [pathname, category, number, title] of cases) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    const heroStart = html.indexOf('<section class="case-hero"');
+    const heroEnd = html.indexOf("</section>", heroStart);
+    const hero = html.slice(heroStart, heroEnd);
+
+    assert.ok(heroStart >= 0);
+    assert.doesNotMatch(hero, new RegExp(category));
+    assert.match(hero, new RegExp('<div class="case-number">' + number + '</div>[\\s\\S]*?<h1>' + title + '</h1>'));
+  }
 });

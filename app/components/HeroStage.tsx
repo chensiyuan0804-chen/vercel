@@ -14,7 +14,7 @@ export function HeroStage() {
       <div className="hero-main">
         <p className="hero-kicker">CHEN SIYUAN · PORTFOLIO 2026</p>
         <h1 id="hero-title">
-          <span>UI DESIGN</span>
+          <span>UI/UX DESIGN</span>
           <span>PORTFOLIO.</span>
         </h1>
         <div className="hero-support">

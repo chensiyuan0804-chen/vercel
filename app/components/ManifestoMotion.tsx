@@ -55,11 +55,13 @@ export function ManifestoMotion() {
         {
           reduceMotion: "(prefers-reduced-motion: reduce)",
           compact: "(max-width: 720px)",
+          finePointer: "(hover: hover) and (pointer: fine)",
         },
         (context) => {
           const conditions = context.conditions as {
             reduceMotion?: boolean;
             compact?: boolean;
+            finePointer?: boolean;
           };
           const compact = Boolean(conditions.compact);
           const chars = gsap.utils.toArray<HTMLElement>(".manifesto-char", root);
@@ -68,6 +70,9 @@ export function ManifestoMotion() {
           const scan = root.querySelector<HTMLElement>(".manifesto-scan");
           const orbit = root.querySelector<HTMLElement>(".manifesto-orbit");
           const orbitCore = root.querySelector<HTMLElement>(".manifesto-orbit-core");
+          const title = root.querySelector<HTMLElement>(".manifesto-title-motion");
+          const lineShells = gsap.utils.toArray<HTMLElement>(".manifesto-line", root);
+          const pointerGlow = root.querySelector<HTMLElement>(".manifesto-pointer-glow");
 
           if (conditions.reduceMotion) {
             gsap.set(chars, { autoAlpha: 1, clearProps: "transform,filter,visibility" });
@@ -163,7 +168,113 @@ export function ManifestoMotion() {
             ease: "none",
           });
 
-          return () => ambientOrbit.kill();
+          let removePointerInteraction: (() => void) | undefined;
+
+          if (conditions.finePointer && title && pointerGlow) {
+            const clamp = gsap.utils.clamp(-1, 1);
+            const titleX = gsap.quickTo(title, "x", { duration: 0.55, ease: "power3.out" });
+            const titleY = gsap.quickTo(title, "y", { duration: 0.55, ease: "power3.out" });
+            const titleRotationX = gsap.quickTo(title, "rotationX", {
+              duration: 0.65,
+              ease: "power3.out",
+            });
+            const titleRotationY = gsap.quickTo(title, "rotationY", {
+              duration: 0.65,
+              ease: "power3.out",
+            });
+            const glowX = gsap.quickTo(pointerGlow, "x", {
+              duration: 0.2,
+              ease: "power2.out",
+            });
+            const glowY = gsap.quickTo(pointerGlow, "y", {
+              duration: 0.2,
+              ease: "power2.out",
+            });
+            const glowOpacity = gsap.quickTo(pointerGlow, "opacity", {
+              duration: 0.22,
+              ease: "power1.out",
+            });
+            const lineMotion = lineShells.map((line) => ({
+              x: gsap.quickTo(line, "x", { duration: 0.62, ease: "power3.out" }),
+              y: gsap.quickTo(line, "y", { duration: 0.62, ease: "power3.out" }),
+            }));
+
+            let bounds: {
+              left: number;
+              top: number;
+              width: number;
+              height: number;
+            } | null = null;
+
+            const measure = () => {
+              const rect = root.getBoundingClientRect();
+              bounds = {
+                left: rect.left + window.scrollX,
+                top: rect.top + window.scrollY,
+                width: rect.width,
+                height: rect.height,
+              };
+            };
+
+            const move = (event: PointerEvent) => {
+              if (!bounds) measure();
+              if (!bounds) return;
+
+              const localX = event.pageX - bounds.left;
+              const localY = event.pageY - bounds.top;
+              const normalizedX = clamp((localX / bounds.width - 0.5) * 2);
+              const normalizedY = clamp((localY / bounds.height - 0.5) * 2);
+
+              titleX(normalizedX * 8);
+              titleY(normalizedY * 5);
+              titleRotationX(-normalizedY * 1.2);
+              titleRotationY(normalizedX * 1.8);
+              glowX(localX);
+              glowY(localY);
+              glowOpacity(0.72);
+
+              lineMotion.forEach((line, index) => {
+                const depth = (index + 1) / lineMotion.length;
+                line.x(normalizedX * (1.5 + depth * 3.5) * (index % 2 ? -1 : 1));
+                line.y(normalizedY * (0.8 + depth * 1.8));
+              });
+            };
+
+            const enter = (event: PointerEvent) => {
+              measure();
+              move(event);
+            };
+
+            const reset = () => {
+              bounds = null;
+              titleX(0);
+              titleY(0);
+              titleRotationX(0);
+              titleRotationY(0);
+              glowOpacity(0);
+              lineMotion.forEach((line) => {
+                line.x(0);
+                line.y(0);
+              });
+            };
+
+            root.addEventListener("pointerenter", enter, { passive: true });
+            root.addEventListener("pointermove", move, { passive: true });
+            root.addEventListener("pointerleave", reset);
+            root.addEventListener("pointercancel", reset);
+
+            removePointerInteraction = () => {
+              root.removeEventListener("pointerenter", enter);
+              root.removeEventListener("pointermove", move);
+              root.removeEventListener("pointerleave", reset);
+              root.removeEventListener("pointercancel", reset);
+            };
+          }
+
+          return () => {
+            removePointerInteraction?.();
+            ambientOrbit.kill();
+          };
         },
       );
 
@@ -184,6 +295,7 @@ export function ManifestoMotion() {
       <div className="manifesto-orbit" aria-hidden="true">
         <span className="manifesto-orbit-core" />
       </div>
+      <span className="manifesto-pointer-glow" aria-hidden="true" />
       <span className="manifesto-scan" aria-hidden="true" />
       <h2 id="manifesto-title" className="manifesto-title-motion" aria-label={manifestoLabel}>
         {manifestoLines.map((line, lineIndex) => (

@@ -50,7 +50,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       >
         <div className="case-number">{project.number}</div>
         <div className="case-heading">
-          <p>{project.category}</p>
           <h1>{project.title}</h1>
           <p className="case-english">{project.englishTitle}</p>
         </div>
