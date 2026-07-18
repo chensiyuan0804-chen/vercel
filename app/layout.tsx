@@ -4,6 +4,7 @@ import "./globals.css";
 import "./portfolio-update.css";
 import "./project-layout-v4.css";
 import "./project-layout-v5.css";
+import "./project-layout-v6.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();

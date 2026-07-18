@@ -41,6 +41,22 @@ export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps)
       aria-labelledby={`project-${project.slug}`}
     >
       <article className="project-card">
+        <div className="project-info">
+          <div className="project-info-top">
+            <p className="project-number">PROJECT {project.number}</p>
+            <p className="project-category">{project.category}</p>
+            <p className="project-year">{project.year}</p>
+          </div>
+          <div className="project-info-main">
+            <h3 id={`project-${project.slug}`}>
+              <Link href={projectHref}>{project.title}</Link>
+            </h3>
+            <div className="project-summary">
+              <p className="project-description">{project.description}</p>
+            </div>
+          </div>
+        </div>
+
         <Link
           className="project-media"
           href={projectHref}
@@ -59,25 +75,6 @@ export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps)
             {project.number} / {totalLabel}
           </span>
         </Link>
-
-        <div className="project-info">
-          <div className="project-info-top">
-            <p className="project-number">PROJECT {project.number}</p>
-            <p className="project-category">{project.category}</p>
-            <p className="project-year">{project.year}</p>
-          </div>
-          <div className="project-info-main">
-            <h3 id={`project-${project.slug}`}>
-              <Link href={projectHref}>{project.title}</Link>
-            </h3>
-            <div className="project-summary">
-              <p className="project-description">{project.description}</p>
-              <Link className="project-view" href={projectHref}>
-                VIEW PROJECT <span aria-hidden="true">↗</span>
-              </Link>
-            </div>
-          </div>
-        </div>
       </article>
     </section>
   );

@@ -31,13 +31,12 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="work-section" id="work" aria-labelledby="work-title">
+      <section className="work-section" id="work" aria-label="精选项目">
         <div className="section-heading">
           <div className="section-label">
             <span>02</span>
             <p>SELECTED WORK / 精选项目</p>
           </div>
-          <h2 id="work-title">从策略到落地的完整案例</h2>
         </div>
 
         <div className="project-list">

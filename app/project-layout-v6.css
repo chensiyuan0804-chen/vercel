@@ -1,0 +1,70 @@
+/* Project details now lead each cover instead of following it. */
+
+.section-heading {
+  display: block;
+  margin-bottom: clamp(58px, 7vw, 108px);
+}
+
+.project-showcase,
+.project-showcase + .project-showcase {
+  padding-top: clamp(58px, 6vw, 92px);
+  padding-bottom: clamp(155px, 15vw, 235px);
+}
+
+.project-showcase:first-child {
+  padding-top: 24px;
+}
+
+.project-showcase .project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info {
+  order: 1;
+  margin: 0 0 clamp(30px, 3.6vw, 56px);
+  padding: 0;
+}
+
+.project-media {
+  order: 2;
+}
+
+.project-info-main {
+  align-items: start;
+  padding-top: clamp(24px, 2.7vw, 42px);
+}
+
+.project-summary {
+  display: block;
+  min-height: 0;
+  padding-top: 4px;
+}
+
+.project-description {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .section-heading {
+    margin-bottom: 54px;
+  }
+
+  .project-showcase,
+  .project-showcase + .project-showcase {
+    padding-top: 54px;
+    padding-bottom: 118px;
+  }
+
+  .project-showcase:first-child {
+    padding-top: 12px;
+  }
+
+  .project-info {
+    margin-bottom: 25px;
+  }
+
+  .project-info-main {
+    padding-top: 20px;
+  }
+}
