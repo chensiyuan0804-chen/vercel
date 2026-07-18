@@ -42,40 +42,18 @@ export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps)
     >
       <article className="project-card">
         <Link
-          className={`project-media${project.coverImages ? " project-media--collage" : ""}`}
+          className="project-media"
           href={projectHref}
           aria-label={`查看${project.title}项目`}
         >
-          {project.coverImages ? (
-            <div className="project-collage" aria-hidden="true">
-              <span className="project-collage-label">
-                PERSONAL <em>PRACTICE</em>
-              </span>
-              <div className="project-collage-grid">
-                {project.coverImages.map((page) => (
-                  <figure key={page}>
-                    <img
-                      src={`/portfolio/${page}.webp`}
-                      alt=""
-                      width="720"
-                      height="1280"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <img
-              src={project.cover}
-              alt={`${project.title}项目封面`}
-              width="1600"
-              height={project.coverHeight ?? 1000}
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding={index === 0 ? "sync" : "async"}
-            />
-          )}
+          <img
+            src={project.cover}
+            alt={`${project.title}项目封面`}
+            width="1600"
+            height={project.coverHeight ?? 1000}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding={index === 0 ? "sync" : "async"}
+          />
           <span className="project-open" aria-hidden="true">↗</span>
           <span className="project-stage-index" aria-hidden="true">
             {project.number} / {totalLabel}

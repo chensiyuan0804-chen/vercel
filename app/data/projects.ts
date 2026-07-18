@@ -7,7 +7,6 @@ export type Project = {
   year: string;
   description: string;
   cover: string;
-  coverImages?: number[];
   coverHeight?: number;
   pages: number[];
   accent: string;
@@ -56,7 +55,7 @@ export const projects: Project[] = [
       "以运营目标确定视觉主题，再通过 AIGC 辅助概念发散与资产制作，将主视觉延展为可持续使用的成套传播物料。",
     cover: "/covers/visual.webp",
     coverHeight: 900,
-    pages: Array.from({ length: 10 }, (_, index) => index + 33),
+    pages: Array.from({ length: 13 }, (_, index) => index + 33),
     accent: "#a4150f",
     foreground: "#fff8ec",
   },
@@ -65,14 +64,13 @@ export const projects: Project[] = [
     number: "04",
     title: "个人练习",
     englishTitle: "Personal Practice",
-    category: "视觉探索 · 界面练习 · AIGC",
+    category: "界面概念 · 图标练习 · AIGC",
     year: "2024—2026",
     description:
-      "通过海报、图标与界面概念等自主练习，持续探索不同视觉风格、信息层级与 AIGC 辅助创作方式。",
-    cover: "/portfolio/43.webp",
-    coverImages: [43, 44, 46],
-    coverHeight: 1000,
-    pages: Array.from({ length: 4 }, (_, index) => index + 43),
+      "以 AI 主题界面、角色切换与图标资产为练习对象，持续探索界面氛围、信息层级和视觉风格的表达方式。",
+    cover: "/portfolio/46.webp",
+    coverHeight: 1080,
+    pages: [46],
     accent: "#102c3d",
     foreground: "#e9f4fa",
   },
