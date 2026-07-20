@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase = new URL("http://localhost:3000");
   }
 
-  const socialImage = new URL("/og-v2.png", metadataBase).toString();
+  const socialImage = new URL("/og-v2.webp", metadataBase).toString();
 
   return {
     metadataBase,
