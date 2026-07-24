@@ -56,33 +56,42 @@ test("renders project information before each homepage cover", async () => {
   assert.doesNotMatch(body, /VIEW PROJECT|从策略到落地的完整案例|界面概念|2025—2026|2024—2026/);
 });
 
-test("removes the first three liangbulu catalog pages", async () => {
+test("renders the replacement liangbulu pages in order", async () => {
   const response = await render("/work/liangbulu");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /\/portfolio\/4\.webp/);
-  assert.match(html, /\/portfolio\/16\.webp/);
-  assert.ok(html.indexOf("/portfolio/4.webp") < html.indexOf("/portfolio/16.webp"));
-  assert.doesNotMatch(html, /\/portfolio\/(?:1|2|3)\.webp/);
+  assert.match(html, /\/portfolio\/liangbulu\/3\.webp/);
+  assert.match(html, /\/portfolio\/liangbulu\/22\.webp/);
+  assert.ok(
+    html.indexOf("/portfolio/liangbulu/3.webp") <
+      html.indexOf("/portfolio/liangbulu/22.webp"),
+  );
+
 });
 
-test("removes the first canopy catalog page", async () => {
+test("renders the replacement canopy pages in order", async () => {
   const response = await render("/work/canopy-coffee");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.doesNotMatch(html, /\/portfolio\/17\.webp/);
-  assert.match(html, /\/portfolio\/18\.webp/);
-  assert.match(html, /\/portfolio\/32\.webp/);
+  assert.match(html, /\/portfolio\/canopy-coffee\/35\.webp/);
+  assert.match(html, /\/portfolio\/canopy-coffee\/49\.webp/);
+  assert.ok(
+    html.indexOf("/portfolio/canopy-coffee/35.webp") <
+      html.indexOf("/portfolio/canopy-coffee/49.webp"),
+  );
 });
 
-test("removes the first operation design catalog page", async () => {
+test("renders the replacement operation design pages in order", async () => {
   const response = await render("/work/visual-lab");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.doesNotMatch(html, /\/portfolio\/33\.webp/);
-  assert.match(html, /\/portfolio\/34\.webp/);
-  assert.match(html, /\/portfolio\/45\.webp/);
-  assert.doesNotMatch(html, /\/portfolio\/46\.webp/);
+  assert.match(html, /\/portfolio\/visual-lab\/23\.webp/);
+  assert.match(html, /\/portfolio\/visual-lab\/34\.webp/);
+  assert.ok(
+    html.indexOf("/portfolio/visual-lab/23.webp") <
+      html.indexOf("/portfolio/visual-lab/34.webp"),
+  );
+
 });
 
 test("limits personal practice to page 46", async () => {

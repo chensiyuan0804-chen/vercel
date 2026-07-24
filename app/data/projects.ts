@@ -9,6 +9,7 @@ export type Project = {
   cover: string;
   coverHeight?: number;
   pages: number[];
+  pageBasePath?: string;
   detailImages?: string[];
   videos?: Array<{
     src: string;
@@ -30,7 +31,8 @@ export const projects: Project[] = [
       "从户外用户的真实任务出发，重新梳理信息架构与核心路径，并用统一的交互和视觉系统降低复杂产品的理解成本。",
     cover: "/covers/liangbulu.webp",
     coverHeight: 1000,
-    pages: Array.from({ length: 13 }, (_, index) => index + 4),
+    pages: Array.from({ length: 20 }, (_, index) => index + 3),
+    pageBasePath: "/portfolio/liangbulu",
     accent: "#58ef68",
     foreground: "#111312",
   },
@@ -45,7 +47,8 @@ export const projects: Project[] = [
       "以品牌氛围统领点单、外卖与会员路径，把消费任务、内容触点和视觉语言整合成连贯而有温度的小程序体验。",
     cover: "/covers/canopy.webp",
     coverHeight: 1000,
-    pages: Array.from({ length: 15 }, (_, index) => index + 18),
+    pages: Array.from({ length: 15 }, (_, index) => index + 35),
+    pageBasePath: "/portfolio/canopy-coffee",
     accent: "#ffcc43",
     foreground: "#121212",
   },
@@ -60,7 +63,8 @@ export const projects: Project[] = [
       "以运营目标确定视觉主题，再通过 AIGC 辅助概念发散与资产制作，将主视觉延展为可持续使用的成套传播物料。",
     cover: "/covers/visual.webp",
     coverHeight: 900,
-    pages: Array.from({ length: 12 }, (_, index) => index + 34),
+    pages: Array.from({ length: 12 }, (_, index) => index + 23),
+    pageBasePath: "/portfolio/visual-lab",
     accent: "#a4150f",
     foreground: "#fff8ec",
   },

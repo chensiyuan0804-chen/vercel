@@ -64,9 +64,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.pages.map((page, index) => (
           <img
             key={page}
-            src={`/portfolio/${page}.webp`}
+            src={`${project.pageBasePath ?? "/portfolio"}/${page}.webp`}
             alt={`${project.title}项目展示第 ${index + 1} 页`}
-            width="1920"
+            width="1600"
             loading={index < 2 ? "eager" : "lazy"}
             decoding={index < 2 ? "sync" : "async"}
           />
