@@ -62,7 +62,7 @@ export const projects: Project[] = [
     description:
       "以运营目标确定视觉主题，再通过 AIGC 辅助概念发散与资产制作，将主视觉延展为可持续使用的成套传播物料。",
     cover: "/covers/visual.webp",
-    coverHeight: 900,
+    coverHeight: 1000,
     pages: Array.from({ length: 12 }, (_, index) => index + 23),
     pageBasePath: "/portfolio/visual-lab",
     accent: "#a4150f",
