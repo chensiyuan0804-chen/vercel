@@ -25,6 +25,19 @@
   justify-content: center;
 }
 
+/* Skip layout and paint work for sections that are still far below the viewport. */
+.project-showcase,
+.about-section,
+.contact-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+
+.case-images img {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 .case-hero {
   --case-title-size: clamp(44px, 6.4vw, 104px);
 }

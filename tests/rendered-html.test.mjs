@@ -73,11 +73,11 @@ test("renders the replacement canopy pages in order", async () => {
   const response = await render("/work/canopy-coffee");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /\/portfolio\/canopy-coffee\/35\.webp/);
-  assert.match(html, /\/portfolio\/canopy-coffee\/49\.webp/);
+  assert.match(html, /\/portfolio\/canopy-coffee\/38\.webp/);
+  assert.match(html, /\/portfolio\/canopy-coffee\/53\.webp/);
   assert.ok(
-    html.indexOf("/portfolio/canopy-coffee/35.webp") <
-      html.indexOf("/portfolio/canopy-coffee/49.webp"),
+    html.indexOf("/portfolio/canopy-coffee/38.webp") <
+      html.indexOf("/portfolio/canopy-coffee/53.webp"),
   );
 });
 
@@ -86,10 +86,10 @@ test("renders the replacement operation design pages in order", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /\/portfolio\/visual-lab\/23\.webp/);
-  assert.match(html, /\/portfolio\/visual-lab\/34\.webp/);
+  assert.match(html, /\/portfolio\/visual-lab\/37\.webp/);
   assert.ok(
     html.indexOf("/portfolio/visual-lab/23.webp") <
-      html.indexOf("/portfolio/visual-lab/34.webp"),
+      html.indexOf("/portfolio/visual-lab/37.webp"),
   );
 
 });
@@ -144,8 +144,8 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   assert.match(motion, /finePointer/);
   assert.match(motion, /gsap\.quickTo/);
   assert.match(motion, /manifesto-pointer-glow/);
-  assert.match(motion, /两组项目都从/);
-  assert.match(motion, /使用AI工具辅助完成创意延展/);
+  assert.match(motion, /从真实场景出发/);
+  assert.match(motion, /AIGC提效并辅助完成创意/);
   assert.doesNotMatch(motion, /四组项目都从|最后以运营思维与/);
   assert.doesNotMatch(motion, /出发：|与产品结构，|建立清晰体验，/);
 

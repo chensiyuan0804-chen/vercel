@@ -10,7 +10,7 @@ type ProjectShowcaseProps = {
   total: number;
 };
 
-export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps) {
+export function ProjectShowcase({ project, total }: ProjectShowcaseProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -67,8 +67,8 @@ export function ProjectShowcase({ project, index, total }: ProjectShowcaseProps)
             alt={`${project.title}项目封面`}
             width="1600"
             height={project.coverHeight ?? 1000}
-            loading={index === 0 ? "eager" : "lazy"}
-            decoding={index === 0 ? "sync" : "async"}
+            loading="lazy"
+            decoding="async"
           />
           <span className="project-open" aria-hidden="true">↗</span>
           <span className="project-stage-index" aria-hidden="true">
