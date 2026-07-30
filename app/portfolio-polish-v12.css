@@ -42,6 +42,21 @@
   --case-title-size: clamp(44px, 6.4vw, 104px);
 }
 
+.case-page-liangbulu .case-hero {
+  --case-accent: #3c322c !important;
+  --case-foreground: #fffaf5 !important;
+}
+
+.case-page-canopy-coffee .case-hero {
+  --case-accent: #5d5856 !important;
+  --case-foreground: #ffffff !important;
+}
+
+.case-page-visual-lab .case-hero {
+  --case-accent: #767373 !important;
+  --case-foreground: #ffffff !important;
+}
+
 .case-title-row {
   grid-column: 1 / -1;
   align-self: center;

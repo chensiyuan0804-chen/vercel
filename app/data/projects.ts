@@ -47,7 +47,7 @@ export const projects: Project[] = [
       "以品牌氛围统领点单、外卖与会员路径，把消费任务、内容触点和视觉语言整合成连贯而有温度的小程序体验。",
     cover: "/covers/canopy.webp",
     coverHeight: 1000,
-    pages: Array.from({ length: 16 }, (_, index) => index + 38),
+    pages: Array.from({ length: 15 }, (_, index) => index + 39),
     pageBasePath: "/portfolio/canopy-coffee",
     accent: "#ffcc43",
     foreground: "#121212",
@@ -79,7 +79,8 @@ export const projects: Project[] = [
       "以 AI 主题界面、角色切换与图标资产为练习对象，持续探索界面氛围、信息层级和视觉风格的表达方式。",
     cover: "/covers/personal-practice.webp",
     coverHeight: 995,
-    pages: [46],
+    pages: [38],
+    pageBasePath: "/portfolio/personal-practice",
     videos: [
       { src: "/videos/jingdong.mp4", label: "\u4eac\u4e1c" },
       { src: "/videos/dinosaur.mp4", label: "\u6050\u9f99" },

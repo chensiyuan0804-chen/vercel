@@ -73,10 +73,11 @@ test("renders the replacement canopy pages in order", async () => {
   const response = await render("/work/canopy-coffee");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /\/portfolio\/canopy-coffee\/38\.webp/);
+  assert.doesNotMatch(html, /\/portfolio\/canopy-coffee\/38\.webp/);
+  assert.match(html, /\/portfolio\/canopy-coffee\/39\.webp/);
   assert.match(html, /\/portfolio\/canopy-coffee\/53\.webp/);
   assert.ok(
-    html.indexOf("/portfolio/canopy-coffee/38.webp") <
+    html.indexOf("/portfolio/canopy-coffee/39.webp") <
       html.indexOf("/portfolio/canopy-coffee/53.webp"),
   );
 });
@@ -94,12 +95,13 @@ test("renders the replacement operation design pages in order", async () => {
 
 });
 
-test("limits personal practice to page 46", async () => {
+test("renders the replacement personal practice image", async () => {
   const response = await render("/work/personal-practice");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, />个人练习</);
-  assert.match(html, /\/portfolio\/46\.webp/);
+  assert.match(html, /\/portfolio\/personal-practice\/38\.webp/);
+  assert.doesNotMatch(html, /\/portfolio\/46\.webp/);
   assert.doesNotMatch(html, /\/portfolio\/43\.webp|\/portfolio\/44\.webp|\/portfolio\/45\.webp/);
 });
 
@@ -162,6 +164,9 @@ test("ships the requested title fonts and manifesto motion styles", async () => 
   const finalRefinements = await readFile(new URL("../app/portfolio-polish-v12.css", import.meta.url), "utf8");
   assert.match(finalRefinements, /\.case-title-row[\s\S]*justify-content: center/);
   assert.match(finalRefinements, /\.case-title-row \.case-number,[\s\S]*font-size: var\(--case-title-size\)/);
+  assert.match(finalRefinements, /\.case-page-liangbulu \.case-hero[\s\S]*#3c322c[\s\S]*#fffaf5/);
+  assert.match(finalRefinements, /\.case-page-canopy-coffee \.case-hero[\s\S]*#5d5856/);
+  assert.match(finalRefinements, /\.case-page-visual-lab \.case-hero[\s\S]*#767373/);
   assert.match(finalRefinements, /\.manifesto \.manifesto-title-motion \.manifesto-line[\s\S]*justify-content: center/);
   assert.match(finalRefinements, /@keyframes contact-jump-active/);
   assert.match(finalRefinements, /@media \(prefers-reduced-motion: reduce\)/);
